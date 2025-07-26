@@ -638,11 +638,10 @@ body {
 }
 
 /* Glowing Effect */
-.skill-card.animate .progress-circle-fill {
+/*.skill-card.animate .progress-circle-fill {
     filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.5));
 }
 
-/* Animated Background Particles */
 .skill-card::before {
     content: '';
     position: absolute;
@@ -665,7 +664,7 @@ body {
     0%, 100% { transform: translate(0, 0) rotate(0deg); }
     33% { transform: translate(10px, -10px) rotate(120deg); }
     66% { transform: translate(-5px, 5px) rotate(240deg); }
-}
+}*/
 
 /* Responsive Breakpoints */
 
