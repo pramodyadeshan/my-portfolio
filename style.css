@@ -169,6 +169,7 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+    text-align: center !important;
 }
 
 .btn-primary {
@@ -701,6 +702,7 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        text-align: center !important;
     }
 
     .btn-primary,
@@ -986,6 +988,7 @@ body {
     .hero-buttons {
         justify-content: center;
         gap: 1.5rem;
+        text-align: center !important;
     }
 
     .hero-content {
@@ -1232,6 +1235,7 @@ body {
     .hero-buttons {
         margin-bottom: 1rem;
         gap: 0.8rem;
+        text-align: center !important;
     }
 
     .btn-primary,
