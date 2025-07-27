@@ -289,23 +289,31 @@ body {
     border-radius: 20px;
 }
 
-/* Skills Section */
+/* Updated Skills Section */
 .skill-card {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 2rem;
     background: white;
     margin-bottom: 2rem;
     position: relative;
     height: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .skill-icon {
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: block;
 }
 
@@ -313,63 +321,58 @@ body {
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--dark-color);
-    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
 }
 
 .skill-card p {
     color: #64748b;
-    margin-bottom: 1.5rem;
-    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    margin-bottom: 2rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
-/* Circular Progress Bars */
-.progress-circle {
+/* New Progress Bar Styles */
+.skill-progress {
+    margin-top: 1.5rem;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 10px;
+    background-color: #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 10px;
+    transition: width 2s ease-in-out;
     position: relative;
-    width: clamp(80px, 20vw, 120px);
-    height: clamp(80px, 20vw, 120px);
-    margin: 20px auto;
+    overflow: hidden;
 }
 
-.progress-circle-bg,
-.progress-circle-fill {
+.progress-bar::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 8px solid transparent;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
 }
 
-.progress-circle-bg {
-    border-color: #e2e8f0;
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
-.progress-circle-fill {
-    border-top-color: var(--primary-color);
-    border-right-color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-    border-left-color: var(--secondary-color);
-    transform: rotate(-90deg);
-    transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.progress-circle-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: clamp(60px, 15vw, 80px);
-    height: clamp(60px, 15vw, 80px);
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+.skill-percentage {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    font-weight: 600;
     color: var(--primary-color);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: right;
 }
 
 /* Projects Section */

@@ -225,60 +225,50 @@ function initializeSkillsAnimation() {
     }
 }
 
-// Regular progress bar animation (fallback)
+// Skills Section Animation with Progress Bars
+function initializeSkillsAnimation() {
+    const skillsSection = document.getElementById('skills');
+
+    if (skillsSection) {
+        const skillsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateProgressBars, 500);
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        skillsObserver.observe(skillsSection);
+        setupSkillCardEffects();
+    }
+}
+
+// Progress Bar Animation
 function animateProgressBars() {
     const progressBars = document.querySelectorAll('.progress-bar');
 
-    progressBars.forEach(bar => {
-        const width = bar.style.width;
+    progressBars.forEach((bar, index) => {
+        const width = bar.getAttribute('data-width');
         bar.style.width = '0%';
 
         setTimeout(() => {
-            bar.style.transition = 'width 2s ease-in-out';
-            bar.style.width = width;
-        }, 100);
+            bar.style.width = width + '%';
+        }, index * 200);
     });
 }
 
-// Enhanced circular progress bar animation
-function animateCircularProgress() {
-    const skillCards = document.querySelectorAll('.skill-card[data-percentage]');
+// Skill Card Hover Effects
+function setupSkillCardEffects() {
+    document.querySelectorAll('.skill-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
 
-    skillCards.forEach((card, index) => {
-        const percentage = parseInt(card.dataset.percentage);
-        const fillElement = card.querySelector('.progress-circle-fill');
-        const percentageElement = card.querySelector('.percentage');
-
-        if (!fillElement || !percentageElement) return;
-
-        // Add staggered delay for each card
-        setTimeout(() => {
-            card.classList.add('animate');
-
-            // Calculate rotation based on percentage (360deg = 100%)
-            const rotation = -90 + (percentage / 100) * 360;
-            fillElement.style.transform = `rotate(${rotation}deg)`;
-
-            // Animate percentage counter
-            animateCounter(percentageElement, 0, percentage, 2000);
-
-        }, index * 200); // Stagger animation by 200ms
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
     });
-}
-
-// Counter animation utility
-function animateCounter(element, start, end, duration) {
-    const increment = (end - start) / (duration / 33); // 33ms intervals (~30fps)
-    let current = start;
-
-    const countInterval = setInterval(() => {
-        current += increment;
-        if (current >= end) {
-            current = end;
-            clearInterval(countInterval);
-        }
-        element.textContent = Math.round(current) + '%';
-    }, 33);
 }
 
 // Skill card hover effects
